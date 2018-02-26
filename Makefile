@@ -6,7 +6,7 @@
 #    By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 16:02:42 by mpascaud          #+#    #+#              #
-#    Updated: 2018/02/26 22:14:08 by mpascaud         ###   ########.fr        #
+#    Updated: 2018/02/26 22:33:29 by mpascaud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,9 @@ NAME = libftprintf.a
 
 TAGS = 
 
-SRC = ft_strlen.c \
-	  ft_atoi.c \
-	  ft_putchar.c \
-	  ft_putnbr.c \
-	  ft_printf.c afficherbinaire.c initialisation.c ft_argument.c ft_cast.c \
-	  ft_decimal.c nombrechiffres.c ft_character.c ft_string.c ft_unicharacter.c \
-	  ft_unistring.c ft_unsigned.c ft_unsigned_hexa.c \
+SRC = ft_strlen.c ft_atoi.c ft_putchar.c ft_putnbr.c ft_printf.c initialisation.c \
+	  ft_argument.c ft_cast.c ft_decimal.c nombrechiffres.c ft_character.c ft_string.c \
+	  ft_unicharacter.c ft_unistring.c ft_unsigned.c ft_unsigned_hexa.c \
 
 
 BIN = $(SRC:.c=.o)
