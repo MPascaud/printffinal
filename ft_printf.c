@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:03:47 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 17:13:14 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:05:12 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ int		ft_printf(char *blabla, ...)
 			modulo = 1;
 			if (blabla[i + 1] == '%')
 			{
-				//i++;
-				//ret++;
-				//write(1, "%", 1);
-			//	modulo = 0;
 			}
 			if (modulo == 1)
 			{
@@ -118,15 +114,6 @@ int		ft_printf(char *blabla, ...)
 				variables->specificateur = blabla[i];
 				if (point == 0 && variables->specificateur == 's')
 				   variables->precision	= -1;
-			/*	printf("variables->diese = %d\n", variables->diese);
-				printf("variables->espace = %d\n", variables->espace);
-				printf("variables->zero = %d\n", variables->zero);
-				printf("variables->moins = %d\n", variables->moins);
-				printf("variables->plus = %d\n", variables->plus);
-				printf("variables->gabarit = %d\n", variables->gabarit);
-				printf("variables->precision = %d\n", variables->precision);
-				printf("variables->modificateur = %c\n", variables->modificateur);
-				printf("variables->specificateur = %c\n", variables->specificateur);*/
 				ret += ft_argument(args, variables);
 				initialisation(variables);				
 				modulo = 0;
@@ -139,7 +126,6 @@ int		ft_printf(char *blabla, ...)
 	}
 	va_end (args);
 	free(variables);
-//	printf("ret = %d\n", ret);
 	return (ret);
 }
 

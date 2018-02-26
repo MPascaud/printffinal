@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 15:22:57 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:02:08 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		ft_unsigned_hexa(va_list args, t_variables *variables)
 	ret = 0;
 	ft_unsigned_cast(args, variables, &tmp);
 	nbchiffres = nombrechiffres(tmp, variables);
-//	printf("nbchiffres = %d\n", nbchiffres);
 	if (variables->moins == 0)
 	{
 		if (variables->diese == 1)
@@ -73,7 +72,6 @@ int		ft_unsigned_hexa(va_list args, t_variables *variables)
 			ret += 2;
 		}
 		j = i;
-//		printf("precison = %d, nbchiffres = %d, i = %d\n", variables->precision, nbchiffres, i);
 		while (i < (variables->precision - nbchiffres))
 		{
 			write(1, "0", 1);

@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 20:49:31 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/26 22:03:51 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,19 @@ void	ft_unsigned_putnbr(uintmax_t nb, t_variables *variables, int nbchiffres, in
 	if (variables->specificateur == 'X')
 		table = "0123456789ABCDEF";
 	base = 10;
-//	printf("COUCOU ||| nb = %x\n", nb);
 	if (variables->specificateur == 'o' || variables->specificateur == 'O')
 		base = 8;
 	if (variables->specificateur == 'x' || variables->specificateur == 'X' || variables->specificateur == 'p')
 		base = 16;
 	if ((variables->specificateur == 'o' || variables->specificateur == 'O') && tmp == 0 && variables->diese == 1)
 	{
-		//if (variables->gabarit != 0 || variables->precision != -1)
-		//if (nb != 0)
 		write(1, "0", 1);
 		if (variables->precision == -1 && nb == 0)
 			return ;
-	/*	if (variables->specificateur == 'x')
-			write(1, "x", 1);
-		if (variables->specificateur == 'X')
-			write(1, "X", 1);*/
 		tmp = 1;
 	}
 	if ((variables->precision == 0) && nb == 0)
 		return ;
-//	printf("base = %d\n", base);
 	if (nb >= base)
 	{
 		ft_unsigned_putnbr(nb / base, variables, nbchiffres, tmp);
@@ -73,14 +65,6 @@ int		ft_unsigned(va_list args, t_variables *variables)
 		variables->specificateur = 'u';
 	ft_unsigned_cast(args, variables, &tmp);
 	nbchiffres = nombrechiffres(tmp, variables);
-//	if (variables->specificateur == 'x' || variables->specificateur == 'X')
-//		nbchiffres++;
-//	if (variables->specificateur == 'x')
-//		write(1, "0x", 2);
-//	if (variables->specificateur == 'X')
-//		write(1, "0X", 2);
-
-//	printf("nbchiffres = %d\n", nbchiffres);
 	if (variables->moins == 0)
 	{
 		if (variables->espace == 1 || variables->plus == 1)
@@ -92,14 +76,6 @@ int		ft_unsigned(va_list args, t_variables *variables)
 			ret++;
 			i++;
 		}
-		/*if (variables->diese == 1 && (variables->specificateur == 'x' || variables->specificateur == 'X'))
-		{
-			if (variables->specificateur == 'x')
-				write(1, "0x", 2);
-			if (variables->specificateur == 'X')
-				write(1, "0X", 2);
-			i += 2;
-		}*/
 		if (variables->plus == 1 && variables->specificateur != 'u' && variables->specificateur != 'U')
 		{
 			write(1, "+", 1);
@@ -114,10 +90,7 @@ int		ft_unsigned(va_list args, t_variables *variables)
 			i++;
 		}
 		ft_unsigned_putnbr(tmp, variables, nbchiffres, 0);
-	//	printf("diese = %d", variables->diese);
-	//	if (variables->diese == -1)
-	//		variables->diese = 0;
-		ret += (nbchiffres /*+ variables->diese*/);
+		ret += nbchiffres;
 	}
 	if (variables->moins == 1)
 	{
@@ -135,21 +108,9 @@ int		ft_unsigned(va_list args, t_variables *variables)
 			i++;
 		if (variables->plus == 0)
 			i++;
-		/*if (variables->diese == 1 && (variables->specificateur == 'x' || variables->specificateur == 'X'))
-		{
-			if (variables->specificateur == 'x')
-				write(1, "0x", 2);
-			if (variables->specificateur == 'X')
-				write(1, "0X", 2);
-			i += 2;
-		}*/
 		while (i <= (variables->precision - nbchiffres))
 		{
 			write(1, "0", 1);
-			//if (variables->specificateur != 'x' && variables->specificateur != 'X')
-			//	write(1, " ", 1);
-			//if (variables->specificateur == 'x' || variables->specificateur == 'X')
-			//	write(1, "0", 1);
 			ret++;
 			i++;
 		}
