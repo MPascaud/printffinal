@@ -6,126 +6,140 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:03:47 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 22:05:12 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:39:20 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+
+
+void	ft_init_v2(t_vari2 *v2)
+{
+	v2->i = 0;
+	v2->j = 0;
+	v2->modulo = 0;
+	v2->point = 0;
+	v2->ret = 0;
+}
+
+
+
 int		ft_printf(char *blabla, ...)
 {
 	va_list			args;
 	t_variables		*variables;
-	int				i;
-	int				modulo;
-	char			*gabarit_str;
-	char			*precision_str;
-	int				j;
-	int				point;
-	int				ret;
+	t_vari2			*v2;
+//	int				i;
+//	int				modulo;
+//	char			*gabarit_str;
+//	char			*precision_str;
+//	int				j;
+//	int				point;
+//	int				ret;
 
-	i = 0;
-	j = 0;
-	modulo = 0;
-	point = 0;
-	ret = 0;
+	//i = 0;
+	//j = 0;
+	//modulo = 0;
+	//point = 0;
+	//ret = 0;
 	variables = (t_variables*)malloc(sizeof(t_variables));
+	v2 = (t_vari2*)malloc(sizeof(t_vari2));
 	initialisation(variables);
+	ft_init_v2(v2);
 	va_start (args, blabla);
-	while (blabla[i])
+	while (blabla[v2->i])
 	{
-		while (blabla[i] != '%' && blabla[i])
+		while (blabla[v2->i] != '%' && blabla[v2->i])
 		{
-			ft_putchar(blabla[i]);
-			ret++;
-			i++;
+			ft_putchar(blabla[v2->i]);
+			v2->ret++;
+			v2->i++;
 		}
-		if (blabla[i] == '%')
+		if (blabla[v2->i] == '%')
 		{
-			modulo = 1;
-			if (blabla[i + 1] == '%')
+			v2->modulo = 1;
+			if (v2->modulo == 1)
 			{
-			}
-			if (modulo == 1)
-			{
-				i++;
-				while (blabla[i] == '#' || blabla[i] == ' ' || blabla[i] == '0' || blabla[i] == '-' || blabla[i] == '+')
+				v2->i++;
+				while (blabla[v2->i] == '#' || blabla[v2->i] == ' ' || blabla[v2->i] == '0' || blabla[v2->i] == '-' || blabla[v2->i] == '+')
 				{
-					if (blabla[i] == '#')
+					if (blabla[v2->i] == '#')
 						variables->diese = 1;
-					if (blabla[i] == ' ')
+					if (blabla[v2->i] == ' ')
 						variables->espace = 1;
-					if (blabla[i] == '0')
+					if (blabla[v2->i] == '0')
 						variables->zero = 1;
-					if (blabla[i] == '-')
+					if (blabla[v2->i] == '-')
 						variables->moins = 1;
-					if (blabla[i] == '+')
+					if (blabla[v2->i] == '+')
 						variables->plus = 1;
-					i++;
+					v2->i++;
 				}
-				if (blabla[i] >= '0' && blabla[i] <= '9')
+				if (blabla[v2->i] >= '0' && blabla[v2->i] <= '9')
 				{
-					j = i;
-					while (blabla[j] >= '0' && blabla[j] <= '9')
+					v2->j = v2->i;
+					while (blabla[v2->j] >= '0' && blabla[v2->j] <= '9')
 					{
-						j++;
+						v2->j++;
 					}
-					gabarit_str = (char*)malloc(sizeof(char) * (j + 1));
-					j = 0;
-					while (blabla[i] >= '0' && blabla[i] <= '9')
+					v2->gabarit_str = (char*)malloc(sizeof(char) * (v2->j + 1));
+					v2->j = 0;
+					while (blabla[v2->i] >= '0' && blabla[v2->i] <= '9')
 					{
-						gabarit_str[j] = blabla[i];
-						j++;
-						i++;
+						v2->gabarit_str[v2->j] = blabla[v2->i];
+						v2->j++;
+						v2->i++;
 					}
-					gabarit_str[j] = '\0';
-					variables->gabarit = ft_atoi(gabarit_str);
-					free(gabarit_str);
+					v2->gabarit_str[v2->j] = '\0';
+					variables->gabarit = ft_atoi(v2->gabarit_str);
+					free(v2->gabarit_str);
 				}
-				if (blabla[i] == '.')
+				if (blabla[v2->i] == '.')
 				{
-					i++;
-					j = i;
-					while (blabla[j] >= '0' && blabla[j] <= '9')
-						j++;
-					precision_str = (char*)malloc(sizeof(char) * (j + 1));
-					j = 0;
-					while (blabla[i] >= '0' && blabla[i] <= '9')
+					v2->i++;
+					v2->j = v2->i;
+					while (blabla[v2->j] >= '0' && blabla[v2->j] <= '9')
+						v2->j++;
+					v2->precision_str = (char*)malloc(sizeof(char) * (v2->j + 1));
+					v2->j = 0;
+					while (blabla[v2->i] >= '0' && blabla[v2->i] <= '9')
 					{
-						precision_str[j] = blabla[i];
-						j++;
-						i++;
+						v2->precision_str[v2->j] = blabla[v2->i];
+						v2->j++;
+						v2->i++;
 					}
-					precision_str[j] = '\0';
-					variables->precision = ft_atoi(precision_str);
-					point = 1;
-					free(precision_str);
+					v2->precision_str[v2->j] = '\0';
+					variables->precision = ft_atoi(v2->precision_str);
+					v2->point = 1;
+					free(v2->precision_str);
 				}
-				if (blabla[i] == 'h' || blabla[i] == 'l' || blabla[i] == 'j' || blabla[i] == 'z')
+				if (blabla[v2->i] == 'h' || blabla[v2->i] == 'l' || blabla[v2->i] == 'j' || blabla[v2->i] == 'z')
 				{
-					variables->modificateur = blabla[i];
-					i++;
-					if (blabla[i] == 'h' || blabla[i] == 'l')
+					variables->modificateur = blabla[v2->i];
+					v2->i++;
+					if (blabla[v2->i] == 'h' || blabla[v2->i] == 'l')
 					{
 						variables->modificateur -= 32;
-						i++;
+						v2->i++;
 					}
 				}
-				variables->specificateur = blabla[i];
-				if (point == 0 && variables->specificateur == 's')
+				variables->specificateur = blabla[v2->i];
+				if (v2->point == 0 && variables->specificateur == 's')
 				   variables->precision	= -1;
-				ret += ft_argument(args, variables);
+				v2->ret += ft_argument(args, variables);
 				initialisation(variables);				
-				modulo = 0;
-				point = 0;
+				v2->modulo = 0;
+				v2->point = 0;
 			}
 			
 		}
-		if (blabla[i])
-			i++;
+		if (blabla[v2->i])
+			v2->i++;
 	}
 	va_end (args);
 	free(variables);
-	return (ret);
+	free(v2);
+	return (v2->ret);
 }
 
