@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 18:02:32 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/27 17:27:34 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 16:38:03 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ typedef struct	s_vari2
 	int		ret;
 
 }				t_vari2;
-size_t			ft_strlen(const char *s);
-int				ft_atoi(const char *str);
-void			ft_putchar(char c);
-int				ft_printf(char *blabla, ...);
 typedef struct	s_variables
 {
 	int		diese;
@@ -51,6 +47,15 @@ typedef struct	s_variables
 	char	modificateur;
 	char	specificateur;
 }				t_variables;
+void	ft_init_v2(t_vari2 *v2);
+void    ft_flags(t_variables *variables, t_vari2 *v2, char *b);
+void    ft_gabarit(t_variables *variables, t_vari2 *v2, char *b);
+void    ft_precision(t_variables *variables, t_vari2 *v2, char *b);
+void    ft_modificateur(t_variables *variables, t_vari2 *v2, char *b);
+int				ft_printf(char *b, ...);
+size_t			ft_strlen(const char *s);
+int				ft_atoi(const char *str);
+void			ft_putchar(char c);
 void    ft_unsigned_putnbr(uintmax_t nb, t_variables *variables, int nbchiffres, int tmp);
 int		ft_unsigned(va_list args, t_variables *variables);
 int		ft_unsigned_hexa(va_list args, t_variables *variables);
