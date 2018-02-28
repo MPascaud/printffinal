@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 19:46:56 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 15:00:04 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:40:48 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int		ft_string(va_list args, t_variables *variables)
 		return (6);
 	}
 	len = ft_strlen(tmp);
-	if (len > variables->precision && variables->precision != -1)
-		len = variables->precision;
-	if (variables->moins == 0)
+	if (len > variables->pre && variables->pre != -1)
+		len = variables->pre;
+	if (variables->moi == 0)
 	{
-		while ((i + len) < variables->gabarit)
+		while ((i + len) < variables->gab)
 		{
 			write (1, " ", 1);
 			ret++;
@@ -48,7 +48,7 @@ int		ft_string(va_list args, t_variables *variables)
 			i++;
 		}
 	}
-	if (variables->moins == 1)
+	if (variables->moi == 1)
 	{
 		while (i < len)
 		{
@@ -56,7 +56,7 @@ int		ft_string(va_list args, t_variables *variables)
 			ret++;
 			i++;
 		}
-		while (i < variables->gabarit)
+		while (i < variables->gab)
 		{
 			write(1, " ", 1);
 			ret++;

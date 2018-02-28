@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 21:50:43 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:42:03 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_unistring(va_list args, t_variables *variables)
 	wchar_t	len;
 	wchar_t gabarit;
 
-	gabarit = (wchar_t)variables->gabarit;
+	gabarit = (wchar_t)variables->gab;
 	i = 0;
 	ret = 0;
 	len = 0;
@@ -64,19 +64,19 @@ int		ft_unistring(va_list args, t_variables *variables)
 		i++;
 	}
 	i = 0;
-	if (variables->precision == 0)
+	if (variables->pre == 0)
 		len = 0;
 //	ft_printf("len = %d\n", len);
-	if (variables->moins == 0)
+	if (variables->moi == 0)
 	{
 		//printf("i = %d, len = %d, variables->gabarit = %d\n", i, len, variables->gabarit);
-		while ((i + len) < variables->gabarit)
+		while ((i + len) < variables->gab)
 		{
 			write(1, " ", 1);
 			ret++;
 			i++;
 		}
-		if (variables->precision == 0)
+		if (variables->pre == 0)
 			return (ret);
 		i = 0;
 		while (tmp[i])
@@ -85,7 +85,7 @@ int		ft_unistring(va_list args, t_variables *variables)
 			i++;
 		}
 	}
-	if (variables->moins == 1)
+	if (variables->moi == 1)
 	{
 		while (tmp[i])
 		{
@@ -93,7 +93,7 @@ int		ft_unistring(va_list args, t_variables *variables)
 			i++;
 		}
 		i = 0;
-		while ((i + len) < variables->gabarit)
+		while ((i + len) < variables->gab)
 		{
 			write(1, " ", 1);
 			ret++;

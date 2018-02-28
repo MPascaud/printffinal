@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 16:03:47 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/28 16:41:04 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:38:22 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	ft_modulo2(t_variables *variables, t_vari2 *v2, char *b, va_list args)
 		if (b[v2->i] == 'h' || b[v2->i] == 'l'
 				|| b[v2->i] == 'j' || b[v2->i] == 'z')
 			ft_modificateur(variables, v2, b);
-		variables->specificateur = b[v2->i];
-		if (v2->point == 0 && variables->specificateur == 's')
-			variables->precision = -1;
+		variables->spe = b[v2->i];
+		if (v2->point == 0 && variables->spe == 's')
+			variables->pre = -1;
 		v2->ret += ft_argument(args, variables);
 		initialisation(variables);
 		v2->modulo = 0;

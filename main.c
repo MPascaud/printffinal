@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 23:30:15 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 21:46:17 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:03:36 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,6 +402,7 @@ retour = printf("pr%4.S\n", L"我是一只猫。");//<<<<<<<-----
 printf("retour = %d\n", retour);
 retour = ft_printf("ft%4.S\n", L"我是一只猫。");//<<<<<<<-----
 printf("retour = %d\n", retour);
+ft_printf("%o, %d\n", 50, 50);
 /*printf("%4.1S", L"Jambon");
 printf("%2.9p", 1234567);
 printf("%2.9p", 1234);

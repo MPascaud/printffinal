@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/28 17:04:30 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:33:08 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int		ft_pointeur(va_list args, t_variables *variables)
 	nbchiffres = nombrechiffres(tmp, variables);
 //	printf("tmp = %llx, nbchiffres = %d\n", tmp, nbchiffres);
 
-	if (variables->moins == 0)
+	if (variables->moi == 0)
 	{
 	//	i = 2;
-		while (((i < variables->gabarit - variables->precision) && (i < variables->gabarit - nbchiffres) && i < variables->precision + j) || ((i + nbchiffres) < variables->gabarit && variables->zero == 0 && (i + variables->precision) < variables->gabarit))
+		while (((i < variables->gab - variables->pre) && (i < variables->gab - nbchiffres) && i < variables->pre + j) || ((i + nbchiffres) < variables->gab && variables->zer == 0 && (i + variables->pre) < variables->gab))
 		{
 			write(1, " ", 1);
 			ret++;
@@ -47,13 +47,13 @@ int		ft_pointeur(va_list args, t_variables *variables)
 		ret += nbchiffres;
 
 	}
-	if (variables->moins == 1)
+	if (variables->moi == 1)
 	{
 		write(1, "0x", 2);
 		ft_unsigned_putnbr(tmp, variables, nbchiffres, 0);
 		ret += nbchiffres;
 		i += nbchiffres;
-		while (i < variables->gabarit)
+		while (i < variables->gab)
 		{
 			write(1, " ", 1);
 			ret++;
@@ -72,23 +72,23 @@ int		ft_modulo(t_variables *variables)
 
 	ret = 1;
 	i = 0;
-	if (variables->moins == 0)
+	if (variables->moi == 0)
 	{
-		while ((i + 1) < variables->gabarit)
+		while ((i + 1) < variables->gab)
 		{
-			if (variables->zero == 0)
+			if (variables->zer == 0)
 				write(1, " ", 1);
-			if (variables->zero == 1)
+			if (variables->zer == 1)
 				write(1, "0", 1);
 			i++;
 			ret++;
 		}
-		ft_putchar(variables->specificateur);
+		ft_putchar(variables->spe);
 	}
-	if (variables->moins == 1)
+	if (variables->moi == 1)
 	{
-		ft_putchar(variables->specificateur);
-		while ((i + 1) < variables->gabarit)
+		ft_putchar(variables->spe);
+		while ((i + 1) < variables->gab)
 		{
 			write(1, " ", 1);
 			i++;
@@ -117,27 +117,27 @@ int		ft_argument(va_list args, t_variables *variables)
 	int		ret;
 
 	ret = 0;
-	if (variables->specificateur == 'd' || variables->specificateur == 'i' || variables->specificateur == 'D')
+	if (variables->spe == 'd' || variables->spe == 'i' || variables->spe == 'D')
 		ret = ft_decimal(args, variables);
-	else if (variables->specificateur == 'c' && variables->modificateur != 'l')
+	else if (variables->spe == 'c' && variables->mod != 'l')
 		ret = ft_character(args, variables);
-	else if (variables->specificateur == 's' && variables->modificateur != 'l')
+	else if (variables->spe == 's' && variables->mod != 'l')
 		ret = ft_string(args, variables);
-	else if (variables->specificateur == 'C' || (variables->specificateur == 'c' && variables->modificateur == 'l'))
+	else if (variables->spe == 'C' || (variables->spe == 'c' && variables->mod == 'l'))
 		ret = ft_unicharacter(args);
-	else if (variables->specificateur == 'S' || (variables->specificateur == 's' && variables->modificateur == 'l'))
+	else if (variables->spe == 'S' || (variables->spe == 's' && variables->mod == 'l'))
 		ret = ft_unistring(args, variables);
-	else if (variables->specificateur == 'o' || variables->specificateur == 'O' || variables->specificateur == 'u' || variables->specificateur == 'U')
+	else if (variables->spe == 'o' || variables->spe == 'O' || variables->spe == 'u' || variables->spe == 'U')
 		ret = ft_unsigned(args, variables);
-	else if (variables->specificateur == 'x' || variables->specificateur == 'X')
+	else if (variables->spe == 'x' || variables->spe == 'X')
 		ret = ft_unsigned_hexa(args, variables);
-	else if (variables->specificateur == 'p')
+	else if (variables->spe == 'p')
 		ret = ft_pointeur(args, variables);
-	else if (variables->specificateur == '%')
+	else if (variables->spe == '%')
 		ret = ft_modulo(variables);
 	else
 	{
-		if ((variables->specificateur >= 48 && variables->specificateur <= 64) || (variables->specificateur >= 65 && variables->specificateur <= 91) || (variables->specificateur>= 93 && variables->specificateur <= 126))
+		if ((variables->spe >= 48 && variables->spe <= 64) || (variables->spe >= 65 && variables->spe <= 91) || (variables->spe >= 93 && variables->spe <= 126))
 		{
 			ret = ft_modulo(variables);
 

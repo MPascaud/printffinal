@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 18:02:32 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/28 17:03:53 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 19:41:56 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,42 @@ typedef struct	s_vari2
 }				t_vari2;
 typedef struct	s_variables
 {
-	int		diese;
-	int		espace;
-	int		zero;
-	int		moins;
-	int		plus;
-	int		gabarit;
-	int		precision;
-	char	modificateur;
-	char	specificateur;
+	int		die;
+	int		esp;
+	int		zer;
+	int		moi;
+	int		plu;
+	int		gab;
+	int		pre;
+	char	mod;
+	char	spe;
 }				t_variables;
+typedef struct	s_unsigned_vari
+{
+	uintmax_t	tmp;
+	int			chi;
+	int			i;
+	int			j;
+	int			ret;
+}				t_unsigned_vari;
+/*typedef struct	s_unsigned_hexa
+{
+	uintmax_t	tmp;
+	int			chi;
+	int			i;
+	int			j;
+	int			ret;
+}				t_unsigned_hexa;*/
+void	ft_space(t_unsigned_vari *uv);
+void	ft_write_zero(t_unsigned_vari *uv);
+
+
+
+
+
+
+
+
 void	ft_init_v2(t_vari2 *v2);
 void    ft_flags(t_variables *variables, t_vari2 *v2, char *b);
 void    ft_gabarit(t_variables *variables, t_vari2 *v2, char *b);

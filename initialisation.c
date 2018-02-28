@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:16:54 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 19:27:54 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:44:11 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	initialisation(t_variables *variables)
 {
-	variables->diese = 0;
-	variables->espace = 0;
-	variables->zero = 0;
-	variables->moins = 0;
-	variables->plus = 0;
-	variables->gabarit = 0;
-	variables->precision = -1;
-	variables->modificateur = 'a';
+	variables->die = 0;
+	variables->esp = 0;
+	variables->zer = 0;
+	variables->moi = 0;
+	variables->plu = 0;
+	variables->gab = 0;
+	variables->pre = -1;
+	variables->mod = 'a';
 }
