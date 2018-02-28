@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 18:02:32 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/28 19:41:56 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 20:12:05 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,10 @@ typedef struct	s_unsigned_vari
 	int			j;
 	int			ret;
 }				t_unsigned_vari;
-/*typedef struct	s_unsigned_hexa
-{
-	uintmax_t	tmp;
-	int			chi;
-	int			i;
-	int			j;
-	int			ret;
-}				t_unsigned_hexa;*/
+
+
+
+
 void	ft_space(t_unsigned_vari *uv);
 void	ft_write_zero(t_unsigned_vari *uv);
 
