@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/20 20:07:22 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:03:19 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ int		ft_size_one(wchar_t c)
 	return (1);
 }
 
-int		ft_unicharacter(va_list args, t_variables *variables)
+int		ft_unicharacter(va_list args)
 {
 	int			ret;
 	wchar_t		tmp;
-	int			size;
+//	int			size;
 
 	ret = 0;
 	tmp = va_arg(args, wchar_t);

@@ -6,47 +6,41 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 22:03:51 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:05:02 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libftprintf.h"
 
-
-
-void	ft_unsigned_putnbr(uintmax_t nb, t_variables *variables, int nbchiffres, int tmp)
+void	ft_unsigned_putnbr(uintmax_t nb, t_variables *v, int ch, int tmp)
 {
 	char	*table;
-	int		base;
-	
-	if (variables->specificateur != 'X')
+	uintmax_t		base;
+
+	if (v->specificateur != 'X')
 		table = "0123456789abcdef";
-	if (variables->specificateur == 'X')
+	if (v->specificateur == 'X')
 		table = "0123456789ABCDEF";
 	base = 10;
-	if (variables->specificateur == 'o' || variables->specificateur == 'O')
+	if (v->specificateur == 'o' || v->specificateur == 'O')
 		base = 8;
-	if (variables->specificateur == 'x' || variables->specificateur == 'X' || variables->specificateur == 'p')
+	if (v->specificateur == 'x' || v->specificateur == 'X' || v->specificateur == 'p')
 		base = 16;
-	if ((variables->specificateur == 'o' || variables->specificateur == 'O') && tmp == 0 && variables->diese == 1)
+	if ((v->specificateur == 'o' || v->specificateur == 'O') && tmp == 0 && v->diese == 1)
 	{
 		write(1, "0", 1);
-		if (variables->precision == -1 && nb == 0)
+		if (v->precision == -1 && nb == 0)
 			return ;
 		tmp = 1;
 	}
-	if ((variables->precision == 0) && nb == 0)
+	if ((v->precision == 0) && nb == 0)
 		return ;
 	if (nb >= base)
-	{
-		ft_unsigned_putnbr(nb / base, variables, nbchiffres, tmp);
-	}
-	ft_putchar (table[nb % base]);
+		ft_unsigned_putnbr(nb / base, v, ch, tmp);
+	ft_putchar(table[nb % base]);
 }
 
-
-int		ft_unsigned(va_list args, t_variables *variables)
+int		ft_unsigned(va_list args, t_variables *v)
 {
 	uintmax_t	tmp;
 	int			nbchiffres;
@@ -57,84 +51,76 @@ int		ft_unsigned(va_list args, t_variables *variables)
 	i = 0;
 	j = 0;
 	ret = 0;
-	if (variables->specificateur == 'O' || variables->specificateur == 'U')
-		variables->modificateur = 'l';
-	if (variables->specificateur == 'O')
-		variables->specificateur = 'o';
-	if (variables->specificateur == 'U')
-		variables->specificateur = 'u';
-	ft_unsigned_cast(args, variables, &tmp);
-	nbchiffres = nombrechiffres(tmp, variables);
-	if (variables->moins == 0)
+	if (v->specificateur == 'O' || v->specificateur == 'U')
+		v->modificateur = 'l';
+	if (v->specificateur == 'O')
+		v->specificateur = 'o';
+	if (v->specificateur == 'U')
+		v->specificateur = 'u';
+	ft_unsigned_cast(args, v, &tmp);
+	nbchiffres = nombrechiffres(tmp, v);
+	if (v->moins == 0)
 	{
-		if (variables->espace == 1 || variables->plus == 1)
+		if (v->espace == 1 || v->plus == 1)
 			i++;
 		j = i;
-		while (((i < variables->gabarit - variables->precision) && (i < variables->gabarit - nbchiffres) && i < variables->precision + j) || ((i + nbchiffres) < variables->gabarit && variables->zero == 0 && (i + variables->precision) < variables->gabarit))
+		while (((i < v->gabarit - v->precision) && (i < v->gabarit - nbchiffres) && i < v->precision + j) || ((i + nbchiffres) < v->gabarit && v->zero == 0 && (i + v->precision) < v->gabarit))
 		{
 			write(1, " ", 1);
 			ret++;
 			i++;
 		}
-		if (variables->plus == 1 && variables->specificateur != 'u' && variables->specificateur != 'U')
+		if (v->plus == 1 && v->specificateur != 'u' && v->specificateur != 'U')
 		{
 			write(1, "+", 1);
 			ret++;
 		}
 		j = i;
 		i = 0;
-		while (((i < variables->precision - nbchiffres) || (j + i + nbchiffres) < variables->gabarit))
+		while (((i < v->precision - nbchiffres) || (j + i + nbchiffres) < v->gabarit))
 		{
 			write(1, "0", 1);
 			ret++;
 			i++;
 		}
-		ft_unsigned_putnbr(tmp, variables, nbchiffres, 0);
+		ft_unsigned_putnbr(tmp, v, nbchiffres, 0);
 		ret += nbchiffres;
 	}
-	if (variables->moins == 1)
+	if (v->moins == 1)
 	{
-		if (variables->plus == 1)
+		if (v->plus == 1)
 		{
 			write(1, "+", 1);
 			ret++;
 		}
-		if (variables->espace == 1 && variables->plus == 0)
+		if (v->espace == 1 && v->plus == 0)
 		{
 			write(1, " ", 1);
 			ret++;
 		}
-		if (variables->espace == 1 || variables->plus == 1)
+		if (v->espace == 1 || v->plus == 1)
 			i++;
-		if (variables->plus == 0)
+		if (v->plus == 0)
 			i++;
-		while (i <= (variables->precision - nbchiffres))
+		while (i <= (v->precision - nbchiffres))
 		{
 			write(1, "0", 1);
 			ret++;
 			i++;
 		}
-		ft_unsigned_putnbr(tmp, variables, nbchiffres, 0);
+		ft_unsigned_putnbr(tmp, v, nbchiffres, 0);
 		ret += nbchiffres;
 		i += nbchiffres;
-		if (variables->plus == 0 && j == 0)
+		if (v->plus == 0 && j == 0)
 			i--;
-		while (i < variables->gabarit)
+		while (i < v->gabarit)
 		{
 			write(1, " ", 1);
 			ret++;
 			i++;
 		}
 	}
-	if ((variables->specificateur == 'o' || variables->specificateur == 'O') && tmp == 0 && variables->diese == 1)
+	if ((v->specificateur == 'o' || v->specificateur == 'O') && tmp == 0 && v->diese == 1)
 		ret++;
 	return (ret);
 }
-
-
-
-
-
-
-
-

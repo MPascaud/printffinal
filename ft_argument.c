@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 19:11:08 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:04:30 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		ft_pointeur(va_list args, t_variables *variables)
 
 
 
-int		ft_modulo(va_list args, t_variables *variables)
+int		ft_modulo(t_variables *variables)
 {
 	int		ret;
 	int		i;
@@ -98,7 +98,7 @@ int		ft_modulo(va_list args, t_variables *variables)
 	return (ret);
 }
 
-int		ft_specificateur_invalide(va_list args, t_variables *variables)
+/*int		ft_specificateur_invalide(va_list args, t_variables *variables)
 {
 	int		ret;
 
@@ -109,11 +109,11 @@ int		ft_specificateur_invalide(va_list args, t_variables *variables)
 
 	}
 	return (ret);
-}
+}*/
 
 int		ft_argument(va_list args, t_variables *variables)
 {
-	int		tmp;
+//	int		tmp;
 	int		ret;
 
 	ret = 0;
@@ -124,7 +124,7 @@ int		ft_argument(va_list args, t_variables *variables)
 	else if (variables->specificateur == 's' && variables->modificateur != 'l')
 		ret = ft_string(args, variables);
 	else if (variables->specificateur == 'C' || (variables->specificateur == 'c' && variables->modificateur == 'l'))
-		ret = ft_unicharacter(args, variables);
+		ret = ft_unicharacter(args);
 	else if (variables->specificateur == 'S' || (variables->specificateur == 's' && variables->modificateur == 'l'))
 		ret = ft_unistring(args, variables);
 	else if (variables->specificateur == 'o' || variables->specificateur == 'O' || variables->specificateur == 'u' || variables->specificateur == 'U')
@@ -134,12 +134,12 @@ int		ft_argument(va_list args, t_variables *variables)
 	else if (variables->specificateur == 'p')
 		ret = ft_pointeur(args, variables);
 	else if (variables->specificateur == '%')
-		ret = ft_modulo(args, variables);
+		ret = ft_modulo(variables);
 	else
 	{
 		if ((variables->specificateur >= 48 && variables->specificateur <= 64) || (variables->specificateur >= 65 && variables->specificateur <= 91) || (variables->specificateur>= 93 && variables->specificateur <= 126))
 		{
-			ret = ft_modulo(args, variables);
+			ret = ft_modulo(variables);
 
 				//ft_putchar(variables->specificateur);
 				//return (1);

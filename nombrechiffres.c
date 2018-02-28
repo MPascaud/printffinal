@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/26 20:58:34 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 17:02:21 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int		signed_nombrechiffres(intmax_t nb, t_variables *variables)
 {
 	int		result;
-	int		tmp;
+//	int		tmp;
 	int		base;
 
 	if (variables->specificateur == 'd' || variables->specificateur == 'i' || variables->specificateur == 'D' || variables->specificateur == 'u')
@@ -53,7 +53,7 @@ int		nombrechiffres(unsigned long long nb, t_variables *variables)
 	int		result;
 //	int		tmp;???????????????????????
 //	unsigned long long tmp;	
-	int		base;
+	unsigned long long		base;
 
 	if (variables->specificateur == 'd' || variables->specificateur == 'i' || variables->specificateur == 'D' || variables->specificateur == 'u')
 		base = 10;
