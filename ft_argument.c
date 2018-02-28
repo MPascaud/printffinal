@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:25:52 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/28 17:33:08 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 23:21:18 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,22 +98,8 @@ int		ft_modulo(t_variables *variables)
 	return (ret);
 }
 
-/*int		ft_specificateur_invalide(va_list args, t_variables *variables)
-{
-	int		ret;
-
-	ret = 0;
-
-	if (variables->moins == 0)
-	{
-
-	}
-	return (ret);
-}*/
-
 int		ft_argument(va_list args, t_variables *variables)
 {
-//	int		tmp;
 	int		ret;
 
 	ret = 0;
@@ -140,9 +126,6 @@ int		ft_argument(va_list args, t_variables *variables)
 		if ((variables->spe >= 48 && variables->spe <= 64) || (variables->spe >= 65 && variables->spe <= 91) || (variables->spe >= 93 && variables->spe <= 126))
 		{
 			ret = ft_modulo(variables);
-
-				//ft_putchar(variables->specificateur);
-				//return (1);
 		}
 	}
 	return (ret);
