@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 16:40:03 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/28 17:34:31 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 23:48:57 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,8 @@ void	ft_unsigned_cast(va_list args, t_variables *variables, uintmax_t *tmp)
 		*tmp = (size_t)va_arg(args, size_t);
 }
 
-
-
 void	ft_cast(va_list args, t_variables *variables, intmax_t *tmp)
 {
-//	unsigned long long	tmp;
-
 	if (variables->mod == 'H')
 		*tmp = (char)va_arg(args, int);
 	if (variables->mod == 'h')

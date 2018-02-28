@@ -6,7 +6,7 @@
 /*   By: mpascaud <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 18:02:32 by mpascaud          #+#    #+#             */
-/*   Updated: 2018/02/28 22:36:57 by mpascaud         ###   ########.fr       */
+/*   Updated: 2018/02/28 23:40:51 by mpascaud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_string_vari
 	int			i;
 	int			ret;
 }				t_string_vari;
+int				ft_pointer(va_list args, t_variables *v);
 void			d_space1(t_signed_vari *d);
 void			d_neg(t_signed_vari *d);
 void			d_zero(t_signed_vari *d);
